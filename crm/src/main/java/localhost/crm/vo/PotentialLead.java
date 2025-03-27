@@ -1,7 +1,17 @@
 package localhost.crm.vo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="POTENTIAL_LEADS")
 public class PotentialLead {
+	@Id
+	@Column(nullable = false, name = "ID")
 	private String id; 
+	@Column(nullable = true, name = "AGE_OF_BUSINESS")
 	private String ageOfBusiness;
 	private String city;
 	private String company;

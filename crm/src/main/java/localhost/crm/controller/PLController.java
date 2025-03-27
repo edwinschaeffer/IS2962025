@@ -18,7 +18,6 @@ public class PLController {
 	
 	@Autowired
 	PotentialLeadMapper plm; */
-	
 	public PLController(JdbcTemplate jt, PotentialLeadMapper plm) {
 		 String sql = "SELECT COUNT(Id) FROM POTENTIAL_LEADS";
 	     int numOfRecords = jt.queryForObject(sql, Integer.class);
@@ -43,6 +42,6 @@ public class PLController {
 	@Autowired
 	public void setJdbcTemplate(JdbcTemplate jt) {
 		
-	}
+	} 
 
 }

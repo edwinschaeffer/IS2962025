@@ -6,14 +6,18 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.orm.jpa.JpaVendorAdapter;
 
-@Configuration
+@SpringBootApplication
 @ComponentScan("localhost.crm")
 @MapperScan("localhost.crm.mapper")
 public class CRMConfig {
@@ -38,5 +42,18 @@ public class CRMConfig {
 	@Bean
 	public JdbcTemplate getJdbcTemplate() throws SQLException {
 		return new JdbcTemplate(getDataSource());
+	}
+	
+	// Normally do not need to configure this bean if using JPA 
+	// by itself. But since we are using both MyBatis and JPA
+	// we have to add the below bean
+	@Bean
+	public LocalContainerEntityManagerFactoryBean setEntityManagerFactory() throws SQLException {
+		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+		em.setDataSource(getDataSource());
+		em.setPackagesToScan("localhost.crm.vo");
+		JpaVendorAdapter va = new HibernateJpaVendorAdapter();
+		em.setJpaVendorAdapter(va);
+		return em;
 	}
 }
