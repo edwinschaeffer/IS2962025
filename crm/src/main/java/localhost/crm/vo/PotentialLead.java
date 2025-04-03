@@ -17,16 +17,20 @@ public class PotentialLead {
 	private String company;
 	private String country;
 	private String area;
+	@Column(nullable = true, name = "EMPLOYEE_COUNT")
 	private String employeeCount;
 	private String industry;
 	private String phone;
+	@Column(nullable = true, name = "POTENTIAL_LEAD_LOCATION__LATITUDE__S")
 	private String plLeadLocationLatitude;
+	@Column(nullable = true, name = "POTENTIAL_LEAD_LOCATION__LONGITUDE__S")
 	private String plLeadLocationLongitude;
 	private String sector;
 	private String state;
 	private String status;
 	private String street;
 	private String website;
+	@Column(nullable = true, name = "ZIP_CODE")
 	private String zipCode;
 	
 	public String getId() {

@@ -14,11 +14,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 
 @SpringBootApplication
 @ComponentScan("localhost.crm")
+@EnableJpaRepositories("localhost.crm.repository")
 @MapperScan("localhost.crm.mapper")
 public class CRMConfig {
     // We now have a DataSource and a JdbcTemplate in the "hivemind" aka 
@@ -48,7 +50,7 @@ public class CRMConfig {
 	// by itself. But since we are using both MyBatis and JPA
 	// we have to add the below bean
 	@Bean
-	public LocalContainerEntityManagerFactoryBean setEntityManagerFactory() throws SQLException {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws SQLException {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(getDataSource());
 		em.setPackagesToScan("localhost.crm.vo");
