@@ -1,14 +1,20 @@
 package disburse.vo;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 public class HouseDisburseDetail {
 	private int recordId;
+	@JsonAlias("bioGuideID")
 	private String bioguideId;
 	private String office;
 	private String category;
 	private String payee;
 	private String startDate;
 	private String endDate;
+	private String purpose;
+	@JsonAlias("AMOUNT")
 	private double amount;
+	@JsonAlias("YEAR")
 	private String year;
 	
 
@@ -63,11 +69,16 @@ public class HouseDisburseDetail {
 	public String getYear() {
 		return year;
 	}
+	
 	public void setYear(String year) {
 		this.year = year;
 	}
-
-	
+	public String getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
 	@Override
 	public String toString() {
 		return "HouseDisburseDetail [recordId=" + recordId + ", bioguideId=" + bioguideId + ", office=" + office

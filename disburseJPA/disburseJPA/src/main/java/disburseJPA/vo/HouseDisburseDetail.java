@@ -1,5 +1,7 @@
 package disburseJPA.vo;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ public class HouseDisburseDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int recordId;
 	@Column(nullable = true, name = "BIOGUIDE_ID")	
+	@JsonAlias("bioGuideID")	
 	private String bioguideId;
 	private String office;
 	private String category;
@@ -23,7 +26,10 @@ public class HouseDisburseDetail {
 	private String startDate;
 	@Column(nullable = true, name = "END_DATE")	
 	private String endDate;
+	@JsonAlias("AMOUNT")
 	private double amount;
+	private String purpose;
+	@JsonAlias("YEAR")
 	private String year;
 	
 	
@@ -80,6 +86,12 @@ public class HouseDisburseDetail {
 	}
 	public void setYear(String year) {
 		this.year = year;
+	}
+	public String getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
 	@Override
 	public String toString() {

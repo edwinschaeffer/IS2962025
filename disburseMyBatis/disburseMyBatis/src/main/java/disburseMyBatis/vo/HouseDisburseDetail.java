@@ -10,6 +10,7 @@ public class HouseDisburseDetail {
 	private String endDate;
 	private double amount;
 	private String year;
+	private String purpose;
 	
 	
 	public int getRecordId() {
@@ -65,6 +66,12 @@ public class HouseDisburseDetail {
 	}
 	public void setYear(String year) {
 		this.year = year;
+	}
+	public String getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
 	@Override
 	public String toString() {
